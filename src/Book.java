@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Stack;
 
 public class Book {
@@ -35,9 +36,19 @@ public class Book {
         this.author = author;
     }
 
-    @Override
+
     public String toString () {
         return "Название книги " + this.name + " год публикации " + this.year + " автор " + this.author ;
+    }
+
+    public boolean equals ( Object o ) {
+        if ( this == o ) return true;
+        if ( !(o instanceof Book book) ) return false;
+        return year == book.year && Objects.equals ( name, book.name ) && Objects.equals ( author, book.author );
+    }
+
+    public int hashCode () {
+        return Objects.hash ( name, year, author );
     }
 }
 
